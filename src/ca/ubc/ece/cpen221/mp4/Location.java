@@ -103,5 +103,38 @@ public final class Location {
 	public int getDistance(Location otherLocation) {
 		return Math.max(Math.abs(this.getX() - otherLocation.getX()), Math.abs(this.getY() - otherLocation.getY()));
 	}
+	
+	/**
+	 * Returns the direction between this Location to another Location.
+	 * precondition: the two locations are different
+	 * 
+	 * @param otherLocation
+	 *            the other location
+	 * @return direction from the input location
+	 */
+	public Direction getDirection(Location otherLocation) {
+		int x1 = this.getX();
+		int y1 = this.getY();
+		int x2 = otherLocation.getX();
+		int y2 = otherLocation.getX();
+		
+		if(x1 == x2) {
+			if(y1 > y2) {
+				return Direction.SOUTH;
+			} else {
+				return Direction.NORTH;
+			}
+		} else if (y1 == y2) {
+			if(x1 > x2) {
+				return Direction.WEST;
+			} else {
+				return Direction.EAST;
+			}
+		} else if(x1 > x2) {
+			return Direction.WEST;
+		} else {
+			return Direction.EAST;
+		}
+	}
 
 }
