@@ -1,5 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Food;
@@ -144,5 +146,19 @@ public class Rabbit implements ArenaAnimal {
 	public void moveTo(Location targetLocation) {
 		location = targetLocation;
 
+	}
+
+	@Override
+	public ArrayList<String> getFood() {
+		ArrayList<String> food = new ArrayList<String>();
+		food.add("Grass");
+		return food;
+	}
+	
+	@Override
+	public ArrayList<String> getPredators() {
+		ArrayList<String> food = new ArrayList<String>();
+		food.add("Fox");
+		return food;
 	}
 }

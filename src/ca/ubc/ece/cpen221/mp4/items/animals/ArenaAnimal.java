@@ -1,5 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
+import java.util.ArrayList;
+
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 /**
@@ -41,4 +43,7 @@ public interface ArenaAnimal extends LivingItem {
 	 */
 	int getMinimumBreedingEnergy();
 
+	ArrayList<String> getFood();
+
+	ArrayList<String> getPredators();
 }

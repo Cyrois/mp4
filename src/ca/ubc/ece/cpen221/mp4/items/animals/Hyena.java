@@ -1,5 +1,7 @@
 package ca.ubc.ece.cpen221.mp4.items.animals;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import ca.ubc.ece.cpen221.mp4.Food;
@@ -144,5 +146,17 @@ public class Hyena implements ArenaAnimal {
 	public void moveTo(Location targetLocation) {
 		location = targetLocation;
 
+	}
+
+	@Override
+	public ArrayList<String> getFood() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getPredators() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
