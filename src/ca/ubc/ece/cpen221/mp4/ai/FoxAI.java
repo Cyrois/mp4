@@ -1,18 +1,14 @@
 package ca.ubc.ece.cpen221.mp4.ai;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.Direction;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.Util;
-import ca.ubc.ece.cpen221.mp4.World;
 import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
 import ca.ubc.ece.cpen221.mp4.commands.EatCommand;
-import ca.ubc.ece.cpen221.mp4.commands.InvalidCommandException;
 import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.Item;
@@ -30,18 +26,16 @@ public class FoxAI extends AbstractAI {
 
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-		if(getRandomEmptyAdjacentLocation(world, animal) != null) {
-			if(shouldFoxBreed(animal)) {
-				return new BreedCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
-			} else if(isFoodNearby(world, animal)){
-				Item food = getClosestFood(world, animal);
-				if(isFoodEdible(animal, food)) {
-					return new EatCommand(animal, food);
-				} else {
-					return getBestMove(world, animal, food);
-				}
+		if(shouldFoxBreed(animal)) {
+			return new BreedCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
+		} else if(isFoodNearby(world, animal)){
+			Item food = getClosestFood(world, animal);
+			if(isFoodEdible(animal, food)) {
+				return new EatCommand(animal, food);
+			} else {
+				return getBestMove(world, animal, food);
 			}
-		} 
+		}
 		return new WaitCommand();
 	}
 	
