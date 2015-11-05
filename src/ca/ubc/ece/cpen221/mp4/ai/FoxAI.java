@@ -30,19 +30,19 @@ public class FoxAI extends AbstractAI {
 
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
-		//TODO implement breeding
-		if(shouldFoxBreed(animal)) {
-			return new BreedCommand(animal, Util.getRandomEmptyAdjacentLocation((World) world, animal.getLocation()));
-		} else if(isFoodNearby(world, animal)){
-			Item food = getClosestFood(world, animal);
-			if(isFoodEdible(animal, food)) {
-				return new EatCommand(animal, food);
-			} else {
-				return getBestMove(world, animal, food);
+		if(getRandomEmptyAdjacentLocation(world, animal) != null) {
+			if(shouldFoxBreed(animal)) {
+				return new BreedCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
+			} else if(isFoodNearby(world, animal)){
+				Item food = getClosestFood(world, animal);
+				if(isFoodEdible(animal, food)) {
+					return new EatCommand(animal, food);
+				} else {
+					return getBestMove(world, animal, food);
+				}
 			}
-		} else {
-			return new WaitCommand();
-		}
+		} 
+		return new WaitCommand();
 	}
 	
 	private boolean shouldFoxBreed(ArenaAnimal animal) {
@@ -103,14 +103,17 @@ public class FoxAI extends AbstractAI {
 		return closestFood;
 	}
 	
-	//move towards the food
-	private MoveCommand getBestMove(ArenaWorld world, ArenaAnimal animal, Item food) {
+	//move towards the food or else wait
+	private Command getBestMove(ArenaWorld world, ArenaAnimal animal, Item food) {
 		Direction moveDirection = Util.getDirectionTowards(animal.getLocation(), food.getLocation());
 		Location newLocation = new Location(animal.getLocation(), moveDirection);
-		if(Util.isLocationEmpty((World) world, newLocation)) {
+		if(isLocationEmpty(world, animal, newLocation)) {
 			return new MoveCommand(animal, newLocation);
 		} else {
-			newLocation = Util.getRandomEmptyAdjacentLocation((World) world, animal.getLocation());
+			newLocation = getRandomEmptyAdjacentLocation(world, animal);
+			if(newLocation == null) {
+				return new WaitCommand();
+			}
 			return new MoveCommand(animal, newLocation);
 		}
 	}

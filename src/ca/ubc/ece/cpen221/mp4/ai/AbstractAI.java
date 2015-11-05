@@ -31,7 +31,7 @@ public class AbstractAI implements AI {
 		}
 	}
 
-	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { // returns
+	public static boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) { // returns
 																								// true
 																								// if
 																								// location
@@ -49,6 +49,21 @@ public class AbstractAI implements AI {
 			}
 		}
 		return true;
+	}
+	
+	public static Location getRandomEmptyAdjacentLocation(ArenaWorld world, ArenaAnimal animal) {
+		Set<Item> possibleMoves = world.searchSurroundings(animal);
+		Iterator<Item> it = possibleMoves.iterator();
+		while (it.hasNext()) {
+			Item item = it.next();
+			Location moveLocation = item.getLocation();
+			if(moveLocation.getDistance(animal.getLocation()) == 1) {
+				if (isLocationEmpty(world, animal, moveLocation)) {
+					return moveLocation;
+				}
+			}
+		}
+		return null;
 	}
 
 	@Override
