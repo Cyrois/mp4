@@ -33,7 +33,7 @@ public class RabbitAI extends AbstractAI {
 		} if(isPredatorNearby(world, animal)) {
 			return runFromPredators(world, animal);
 		} else if(isFoodNearby(world, animal)){
-			return getBestMove(world, animal);
+			return moveToFood(world, animal);
 		} else {
 			return new MoveCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
 		}

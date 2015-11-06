@@ -21,7 +21,7 @@ public class FoxAI extends AbstractAI {
 		if(shouldFoxBreed(animal)) {
 			return new BreedCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
 		} else if(isFoodNearby(world, animal)){
-			return getBestMove(world, animal);
+			return moveToFood(world, animal);
 		} else {
 			return new WaitCommand();
 		}
