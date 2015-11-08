@@ -44,7 +44,6 @@ public class Fox implements ArenaAnimal {
 	public Fox(AI foxAI, Location initialLocation) {
 		this.ai = foxAI;
 		this.location = initialLocation;
-
 		this.energy = INITIAL_ENERGY;
 	}
 
@@ -156,7 +155,7 @@ public class Fox implements ArenaAnimal {
 	
 	@Override
 	public ArrayList<String> getPredators() {
-		ArrayList<String> food = new ArrayList<String>();
-		return food;
+		ArrayList<String> predators = new ArrayList<String>();
+		return predators;
 	}
 }

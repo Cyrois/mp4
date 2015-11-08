@@ -157,8 +157,8 @@ public class Rabbit implements ArenaAnimal {
 	
 	@Override
 	public ArrayList<String> getPredators() {
-		ArrayList<String> food = new ArrayList<String>();
-		food.add("Fox");
-		return food;
+		ArrayList<String> predators = new ArrayList<String>();
+		predators.add("Fox");
+		return predators;
 	}
 }
