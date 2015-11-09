@@ -32,11 +32,28 @@ public class AbstractAI implements AI {
 	}
 
 	/**
-	 * Return a direction that is pseudo-perpendicular to the given direction
+     * Return a direction that is perpendicular to the left of the given direction
+     * @param dir the direction to find a perpendicular direction to
+     * @return a direction that is 90 degrees counter-clockwise from the given direction
+     */
+    public static Direction leftPerpendicularDir(Direction dir) {
+        if (dir == Direction.EAST) {
+            return Direction.NORTH;
+        } else if (dir == Direction.WEST) {
+            return Direction.SOUTH;
+        } else if (dir == Direction.SOUTH) {
+            return Direction.EAST;
+        } else {
+            return Direction.WEST;
+        }
+    }
+	
+	/**
+	 * Return a direction that is perpendicular to the right of the given direction
 	 * @param dir the direction to find a perpendicular direction to
-	 * @return a direction that is 90 degress clockwise from the given direction
+	 * @return a direction that is 90 degrees clockwise from the given direction
 	 */
-	public Direction perpendicularDirection(Direction dir) {
+	public static Direction rightPerpendicularDir(Direction dir) {
 		if (dir == Direction.EAST) {
 			return Direction.SOUTH;
 		} else if (dir == Direction.WEST) {
@@ -215,7 +232,7 @@ public class AbstractAI implements AI {
 				nextDirection = oppositeDir(nextDirection);
 				
 				if (nextDirection.equals(moveDirection)) {
-					nextDirection = perpendicularDirection(nextDirection);
+					nextDirection = rightPerpendicularDir(nextDirection);
 					Location newLocation = new Location(animal.getLocation(), nextDirection);
 					if(isLocationEmpty(world, animal, newLocation)) {
 						moveDirection = nextDirection;

@@ -159,6 +159,7 @@ public class Rabbit implements ArenaAnimal {
 	public ArrayList<String> getPredators() {
 		ArrayList<String> predators = new ArrayList<String>();
 		predators.add("Fox");
+        predators.add("Hyena");
 		return predators;
 	}
 }

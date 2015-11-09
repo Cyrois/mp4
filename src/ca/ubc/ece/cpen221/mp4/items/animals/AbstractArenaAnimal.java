@@ -23,10 +23,10 @@ public abstract class AbstractArenaAnimal implements ArenaAnimal { // abstract
 	private int COOLDOWN;
 	private ImageIcon image;
 	
-	private AI ai;
+	protected AI ai;
 
-	private Location location;
-	private int energy;
+	protected Location location;
+	protected int energy;
 
 	public AbstractArenaAnimal(AI animalAI, Location initialLocation){
         this.ai = animalAI;

@@ -17,26 +17,39 @@ import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.*;
 import ca.ubc.ece.cpen221.mp4.items.animals.*;
 
-public class ArenaAnimalAI implements AI {
+public class ArenaAnimalAI extends AbstractAI {
 
 	public ArenaAnimalAI() {
 	}
 
-	public boolean isLocationEmpty(ArenaWorld world, ArenaAnimal animal, Location location) {
-		if (!Util.isValidLocation(world, location)) {
-			return false;
-		}
-		Set<Item> possibleMoves = world.searchSurroundings(animal);
-		Iterator<Item> it = possibleMoves.iterator();
-		while (it.hasNext()) {
-			Item item = it.next();
-			if (item.getLocation().equals(location)) {
-				return false;
-			}
-		}
-		return true;
-	}
+    @Override
+    public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
+        if(shouldAnimalBreed(animal)) {
+            return new BreedCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
+        } else if(isFoodNearby(world, animal)){
+            return moveToFood(world, animal);
+        } else {
+            return new WaitCommand();
+        }
+    }
+    
+    private boolean shouldAnimalBreed(ArenaAnimal animal) {
+        int energy = animal.getEnergy();
+        int maxEnergy = animal.getMaxEnergy();
+        int breedEnergy = animal.getMinimumBreedingEnergy();
 
+        //TODO optimize this
+        int shouldBreedEnergy = maxEnergy / breedEnergy;
+        shouldBreedEnergy = maxEnergy / 2;
+        if(energy > shouldBreedEnergy) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+	
+	
+	/* Old AI
 	@Override
 	public Command getNextAction(ArenaWorld world, ArenaAnimal animal) {
 		Direction dir = Util.getRandomDirection();
@@ -57,5 +70,5 @@ public class ArenaAnimalAI implements AI {
 		}
 		return new WaitCommand();
 	}
-
+    */
 }

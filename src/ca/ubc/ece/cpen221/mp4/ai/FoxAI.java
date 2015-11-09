@@ -3,6 +3,7 @@ package ca.ubc.ece.cpen221.mp4.ai;
 import ca.ubc.ece.cpen221.mp4.ArenaWorld;
 import ca.ubc.ece.cpen221.mp4.commands.BreedCommand;
 import ca.ubc.ece.cpen221.mp4.commands.Command;
+import ca.ubc.ece.cpen221.mp4.commands.MoveCommand;
 import ca.ubc.ece.cpen221.mp4.commands.WaitCommand;
 import ca.ubc.ece.cpen221.mp4.items.animals.ArenaAnimal;
 
@@ -23,7 +24,7 @@ public class FoxAI extends AbstractAI {
 		} else if(isFoodNearby(world, animal)){
 			return moveToFood(world, animal);
 		} else {
-			return new WaitCommand();
+            return new MoveCommand(animal, getRandomEmptyAdjacentLocation(world, animal));
 		}
 	}
 	

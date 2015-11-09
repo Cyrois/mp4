@@ -2,16 +2,12 @@ package ca.ubc.ece.cpen221.mp4.items.animals;
 
 import java.util.ArrayList;
 
+import ca.ubc.ece.cpen221.mp4.Food;
 import ca.ubc.ece.cpen221.mp4.Location;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class Bear extends AbstractArenaAnimal {
-    
-    private AI ai;
-
-    private Location location;
-    private int energy;
     
     /**
      * Create a new {@link Bear} with an {@link AI} at
@@ -25,12 +21,12 @@ public class Bear extends AbstractArenaAnimal {
      */
     public Bear(AI bearAI, Location initialLocation) {
         super(bearAI, initialLocation);
-        setINITIAL_ENERGY(450);
+        setINITIAL_ENERGY(250);
         setEnergy(getINITIAL_ENERGY());
-        setMAX_ENERGY(600);
+        setMAX_ENERGY(300);
         setSTRENGTH(200);
-        setMIN_BREEDING_ENERGY(100);
-        setVIEW_RANGE(4);
+        setMIN_BREEDING_ENERGY(125);
+        setVIEW_RANGE(7);
         setCOOLDOWN(5);
         setImage("bear.gif");
     }
@@ -38,14 +34,17 @@ public class Bear extends AbstractArenaAnimal {
     @Override
     public ArrayList<String> getFood() {
         ArrayList<String> food = new ArrayList<String>();
-        // TODO add food?
+        food.add("Fox");
+        food.add("Hyena");
+        food.add("Grass");
+        food.add("Gnat");
         return food;
     }
 
     @Override
     public ArrayList<String> getPredators() {
         ArrayList<String> predators = new ArrayList<String>();
-        // TODO add predators?
+        predators.add("Tiger");
         return predators;
     }
 
@@ -56,7 +55,14 @@ public class Bear extends AbstractArenaAnimal {
         this.energy = energy / 2;
         return child;
     }
-
+    
+    @Override
+    public void eat(Food food) {
+        // Bear can eat meat and plants
+        energy = Math.min(getMaxEnergy(), energy + 
+                Math.max(food.getMeatCalories(), food.getPlantCalories()));
+    }
+    
     @Override
     public String getName() {
         return "Bear";

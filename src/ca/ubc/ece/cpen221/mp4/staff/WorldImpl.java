@@ -70,7 +70,7 @@ public class WorldImpl implements World {
 	public void addItem(Item item) {
 		items.add(item);
 	}
-
+	
 	@Override
 	public Iterable<Item> getItems() {
 		// Lazily removes all of the dead items.
@@ -127,7 +127,7 @@ public class WorldImpl implements World {
 		}
 		return result;
 	}
-
+	
 	@Override
 	public int getWidth() {
 		return width;

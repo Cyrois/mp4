@@ -8,11 +8,6 @@ import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class Tiger extends AbstractArenaAnimal {
     
-    private AI ai;
-
-    private Location location;
-    private int energy;
-    
     /**
      * Create a new {@link Tiger} with an {@link AI} at
      * <code> initialLocation </code>. The <code> initialLoation
@@ -25,12 +20,12 @@ public class Tiger extends AbstractArenaAnimal {
      */
     public Tiger(AI tigerAI, Location initialLocation) {
         super(tigerAI, initialLocation);
-        setINITIAL_ENERGY(150);
+        setINITIAL_ENERGY(200);
         setEnergy(getINITIAL_ENERGY());
-        setMAX_ENERGY(200);
-        setSTRENGTH(150);
-        setMIN_BREEDING_ENERGY(30);
-        setVIEW_RANGE(6);
+        setMAX_ENERGY(250);
+        setSTRENGTH(220);
+        setMIN_BREEDING_ENERGY(125);
+        setVIEW_RANGE(10);
         setCOOLDOWN(4);
         setImage("tiger.gif");
     }
@@ -38,14 +33,16 @@ public class Tiger extends AbstractArenaAnimal {
     @Override
     public ArrayList<String> getFood() {
         ArrayList<String> food = new ArrayList<String>();
-        // TODO add food?
+        food.add("Rabbit");
+        food.add("Bear");
+        food.add("Fox");
+        food.add("Hyena");
         return food;
     }
 
     @Override
     public ArrayList<String> getPredators() {
         ArrayList<String> predators = new ArrayList<String>();
-        // TODO add predators?
         return predators;
     }
 

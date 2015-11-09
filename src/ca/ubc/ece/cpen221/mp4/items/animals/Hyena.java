@@ -3,15 +3,11 @@ package ca.ubc.ece.cpen221.mp4.items.animals;
 import java.util.ArrayList;
 
 import ca.ubc.ece.cpen221.mp4.Location;
+import ca.ubc.ece.cpen221.mp4.Util;
 import ca.ubc.ece.cpen221.mp4.ai.AI;
 import ca.ubc.ece.cpen221.mp4.items.LivingItem;
 
 public class Hyena extends AbstractArenaAnimal {
-    
-    private AI ai;
-
-    private Location location;
-    private int energy;
     
     /**
      * Create a new {@link Hyena} with an {@link AI} at
@@ -25,27 +21,31 @@ public class Hyena extends AbstractArenaAnimal {
      */
     public Hyena(AI hyenaAI, Location initialLocation) {
         super(hyenaAI, initialLocation);
-        setINITIAL_ENERGY(80);
+        setINITIAL_ENERGY(150);
         setEnergy(getINITIAL_ENERGY());
-        setMAX_ENERGY(100);
+        setMAX_ENERGY(200);
         setSTRENGTH(120);
         setMIN_BREEDING_ENERGY(15);
         setVIEW_RANGE(6);
         setCOOLDOWN(3);
         setImage("hyena.gif");
     }
+    
 
     @Override
     public ArrayList<String> getFood() {
         ArrayList<String> food = new ArrayList<String>();
-        // TODO add food?
+        food.add("Fox");
+        food.add("Rabbit");
+        food.add("Gnat");
         return food;
     }
 
     @Override
     public ArrayList<String> getPredators() {
         ArrayList<String> predators = new ArrayList<String>();
-        // TODO add predators?
+        predators.add("Bear");
+        predators.add("Tiger");
         return predators;
     }
 
@@ -63,3 +63,4 @@ public class Hyena extends AbstractArenaAnimal {
     }
 
 }
+
